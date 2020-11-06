@@ -30,6 +30,25 @@ const NavBar = () => {
                     background: 'lightgrey'
                 }}
                 >Stocks</NavLink> 
+
+            <NavLink
+                to= '/about'
+                exact
+                style={link}
+                activeStyle={{
+                    background: 'lightgrey'
+                }}
+                >About StockApp</NavLink> 
+
+            <NavLink
+                to= '/login'
+                exact
+                style={link}
+                activeStyle={{
+                    background: 'lightgrey'
+                }}
+                >Login</NavLink> 
+
         </div>
     )
 }
