@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Stock from '../Components/Stock'
 
 const url = 'http://localhost:5000/stocks'
 
@@ -18,18 +19,18 @@ export default class StocksContainer extends Component {
         .then(res => res.json())
         .then(stocks => {
             this.setState({
-                stocks
+                stocks: stocks.data
             })
         })
     }
 
 
     render() {
+        console.log(this.state.stocks)
         return(
             <div>
-                <h1>Hi from StocksContainer</h1>
-                <p>stocks</p>
+            {this.state.stocks.map((stock, idx) => <Stock key={idx} stock={stock}/>)}
             </div>
-        )
-    }
+         )
+        }
 }
