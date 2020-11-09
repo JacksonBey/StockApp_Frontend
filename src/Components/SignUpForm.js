@@ -29,25 +29,24 @@ export default class SignUpForm extends Component {
         console.log('name: ', this.state.name)
         console.log('bio: ', this.state.bio)
         console.log('image: ', this.state.image)
-
-        fetch(url, {
+        fetch('http://localhost:3001/api/v1/users', {
             method: 'POST',
-            headers: {'Accept': 'application/json',
-            'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password,
-                password_confirmation: this.state.cPassword,
-                name: this.state.name,
-                bio: this.state.bio,
-                image: this.state.image
+                user: {
+                    username: this.state.username,
+                    password: this.state.password,
+                    name: this.state.name,
+                    bio: this.state.bio,
+                    image: this.state.image
+                }
             })
-
         })
-        .then(res => res.json())
-        .then(user => {
-            console.log(user)
-        })
+        .then(resp => resp.json())
+        .then(user => console.log(user.user))
 
     }
     // :name, :username, :password, :password_confirmation, :bio, :image)
