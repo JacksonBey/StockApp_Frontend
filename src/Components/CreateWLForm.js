@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const usersurl = 'http://localhost:5000/users'
+const usersurl = 'http://localhost:3001/users'
 // const watchlisturl = 'http://localhost:5000/watchlist'
 
 export default class CreateWLForms extends Component {
@@ -72,23 +72,6 @@ export default class CreateWLForms extends Component {
         return(
             <div>
                 <h1>Create A Watchlist</h1>
-
-                <h3>Select User:</h3>
-                <div>
-                    <button onClick={this.handleMenu}>
-                        {(this.state.showMenu) ? <p>&#x2193; Show Users </p> : <p>&#x2192; Show Users </p>}
-                    </button>
-                    
-                    <div className="menu" >
-        {(this.state.showMenu) ? this.state.users.map((user, idx) => 
-                <div key={idx} >
-             <button onClick={() => this.handleSelect(user)}>{(idx+1) + '. '}{user.attributes.name}{(user === this.state.selecteduser) ? ' X' : null}</button>
-                </div>
-             )
-                         : null
-                    }
-                    </div>
-                </div>
                 <br/>
                 <form onSubmit={this.handleSubmit}>
                     <label>Watchlist Title
@@ -104,3 +87,19 @@ export default class CreateWLForms extends Component {
 }
 
 {/* <button>{user.attributes.name} dfsa</button> */}
+
+// <h3>Select User:</h3>
+// <div>
+//     <button onClick={this.handleMenu}>
+//         {(this.state.showMenu) ? <p>&#x2193; Show Users </p> : <p>&#x2192; Show Users </p>}
+//     </button>
+    
+//     <div className="menu" >
+// {(this.state.showMenu) ? this.state.users.map((user, idx) => 
+// <div key={idx} >
+// <button onClick={() => this.handleSelect(user)}>{(idx+1) + '. '}{user.attributes.name}{(user === this.state.selecteduser) ? ' X' : null}</button>
+// </div>
+// )
+//          : null
+//     }
+//     </div>

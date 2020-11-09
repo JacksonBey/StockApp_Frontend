@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Stock from '../Components/Stock'
 
-const url = 'http://localhost:5000/stocks'
+const url = 'http://localhost:3001/stocks'
 
 export default class StocksContainer extends Component {
 
