@@ -76,13 +76,13 @@ export default class CreateWLForms extends Component {
                 <h3>Select User:</h3>
                 <div>
                     <button onClick={this.handleMenu}>
-                        Show Users
+                        {(this.state.showMenu) ? <p>&#x2193; Show Users </p> : <p>&#x2192; Show Users </p>}
                     </button>
                     
                     <div className="menu" >
         {(this.state.showMenu) ? this.state.users.map((user, idx) => 
                 <div key={idx} >
-             <button onClick={() => this.handleSelect(user)}>{user.attributes.name}{(user === this.state.selecteduser) ? ' X' : null}</button>
+             <button onClick={() => this.handleSelect(user)}>{(idx+1) + '. '}{user.attributes.name}{(user === this.state.selecteduser) ? ' X' : null}</button>
                 </div>
              )
                          : null
