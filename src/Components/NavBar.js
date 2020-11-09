@@ -49,6 +49,24 @@ const NavBar = () => {
                 }}
                 >Login</NavLink> 
 
+            <NavLink
+                to= '/signup'
+                exact
+                style={link}
+                activeStyle={{
+                    background: 'lightgrey'
+                }}
+                >Sign up</NavLink> 
+
+            <NavLink
+                to= '/watchlist'
+                exact
+                style={link}
+                activeStyle={{
+                    background: 'lightgrey'
+                }}
+                >Watchlist</NavLink> 
+
         </div>
     )
 }
