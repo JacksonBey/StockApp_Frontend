@@ -2,15 +2,18 @@ import React, {Component} from 'react';
 
 export default class HomePage extends Component {
 
-    componentDidMount() {
-        console.log('hi from homepage')
-      }
+    showUsername = () => {
+        if (this.props.user.data === undefined) {
+            return <h1>Welcome To Our Stock App</h1>
+        } else {
+            return <h1>Hello, {this.props.user.data.attributes.username}</h1>
+        }
+    }
 
     render() {
-        console.log(this.props)
         return(
             <div>
-                <h1>Hi from HomePage</h1>
+                {this.showUsername()}
             </div>
         )
     }

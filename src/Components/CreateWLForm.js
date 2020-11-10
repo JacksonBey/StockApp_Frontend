@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const usersurl = 'http://localhost:3001/users'
+const usersurl = 'http://localhost:3001//watch_lists'
 // const watchlisturl = 'http://localhost:5000/watchlist'
 
 export default class CreateWLForms extends Component {
