@@ -16,6 +16,7 @@ import Watchlist from './Containers/Watchlist';
 import CreateWLForm from './Components/CreateWLForm';
 import { Component } from 'react';
 import UserBar from './Components/UserBar';
+import UserShow from './Components/UserShow';
 
 
 
@@ -33,6 +34,7 @@ class App extends Component{
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} />
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
   handleWatchList = () => <Watchlist user={this.state.user} />
+  renderAccount = () => <UserShow user={this.state.user} handleLogout={this.handleLogout}/>
 
   //auth
   handleAuthFetch = (info, request) => {
@@ -73,9 +75,16 @@ class App extends Component{
   }
 
 
-  componentDidMount() {
-    console.log('hi from App component')
-  }
+  handleLogout = () => {
+    console.log('logout')
+      this.setState(() => {
+        this.props.history.push('/')
+      })
+      this.setState({
+        user: "", token: ""
+      })
+      // console.log(this.state)
+}
 
 
   render() {
@@ -91,6 +100,7 @@ class App extends Component{
       <Route exact path='/signup' component={this.renderSignUp} />
       <Route exact path='/about' component={AboutPage} />
       <Route exact path='/CreateWLForm' component={CreateWLForm} />
+      <Route exact path='/usershow' component={this.renderAccount} />
       </Switch>
       </div>
   );
