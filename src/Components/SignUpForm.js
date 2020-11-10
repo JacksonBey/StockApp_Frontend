@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const url = 'http://localhost:5000/users'
+// const url = 'http://localhost:5000/users'
 
 export default class SignUpForm extends Component {
 

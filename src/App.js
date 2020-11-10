@@ -32,28 +32,33 @@ export default class App extends Component{
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
 
   //auth
-  handleAuthFetch= (info, request) => {
-    fetch(request,{
-      method:'POST',
+  handleAuthFetch = (info, request) => {
+    fetch(request, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: info.username,
-        password: info.password
+        user: {
+          username: info.username,
+          password: info.password
+        }
       })
     })
     .then(res => res.json())
-    .then(data => ({user: data.user, token: data.token }, () => {
-      console.log(this.state)
-      this.props.history.push('/')
-    }))
+    .then(data => {
+      console.log(data)
+      this.setState({user: data.user, token: data.token}, () => {
+        console.log(this.state)
+      })
+    })
+    
   }
 
 
 
   handleLogin = (info) => {
-    console.log('login')
+    console.log(info)
     this.handleAuthFetch(info,'http://localhost:3001/api/v1/login')
 
   }
