@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
 export default class HomePage extends Component {
+
+    componentDidMount() {
+        console.log('hi from homepage')
+      }
+
     render() {
         console.log(this.props)
         return(

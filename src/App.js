@@ -2,7 +2,9 @@ import './App.css';
 import HomePage from './Components/HomePage';
 import {
   BrowserRouter as Router,
-  Route
+  withRouter,
+  Route,
+  Switch
 } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import StocksContainer from './Containers/StocksContainer';
@@ -18,7 +20,7 @@ import UserBar from './Components/UserBar';
 
 
 
-export default class App extends Component{
+class App extends Component{
 
 
   state = {
@@ -27,7 +29,7 @@ export default class App extends Component{
   }
 
   //render component
-  handleHome = () => <HomePage username={this.state.user.username} />
+  handleHome = () => <HomePage user={this.state.user} />
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} />
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
 
@@ -50,9 +52,10 @@ export default class App extends Component{
       console.log(data)
       this.setState({user: data.user, token: data.token}, () => {
         console.log(this.state)
+        console.log(this.props.history)
+        this.props.history.push('/')
       })
     })
-    
   }
 
 
@@ -69,16 +72,18 @@ export default class App extends Component{
   }
 
 
-
+  componentDidMount() {
+    console.log('hi from App component')
+  }
 
 
   render() {
   return (
-    <Router>
-      <div>
+      <div className='App'>
         {/* display differint bars depending on the loggedIn state */}
-        {(this.state.loggedIn) ? <UserBar /> :<NavBar />}
-      
+        {/* {(this.state.loggedIn) ? <UserBar /> :<NavBar />} */}
+      <NavBar />
+      <Switch>
       <Route exact path='/' component={this.handleHome}/>
       <Route exact path='/stocks' component={StocksContainer} />
       <Route exact path='/watchlist' component={Watchlist} />
@@ -86,9 +91,10 @@ export default class App extends Component{
       <Route exact path='/signup' component={this.renderSignUp} />
       <Route exact path='/about' component={AboutPage} />
       <Route exact path='/CreateWLForm' component={CreateWLForm} />
+      </Switch>
       </div>
-    </Router>
   );
 }
 }
 
+export default withRouter(App)
