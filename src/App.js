@@ -27,9 +27,10 @@ export default class App extends Component{
   }
 
   //render component
-  handleHome = () => <HomePage username={this.state.user.username} />
+  handleHome = () => <HomePage username={this.state.user} />
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} />
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
+  handleWatchList = () => <Watchlist user={this.state.user} />
 
   //auth
   handleAuthFetch = (info, request) => {
@@ -81,7 +82,7 @@ export default class App extends Component{
       
       <Route exact path='/' component={this.handleHome}/>
       <Route exact path='/stocks' component={StocksContainer} />
-      <Route exact path='/watchlist' component={Watchlist} />
+      <Route exact path='/watchlist' component={this.handleWatchList} />
       <Route exact path='/login' component={this.renderLogin} />
       <Route exact path='/signup' component={this.renderSignUp} />
       <Route exact path='/about' component={AboutPage} />
