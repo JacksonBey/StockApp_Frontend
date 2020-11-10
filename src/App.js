@@ -81,8 +81,7 @@ class App extends Component{
   return (
       <div className='App'>
         {/* display differint bars depending on the loggedIn state */}
-        {/* {(this.state.loggedIn) ? <UserBar /> :<NavBar />} */}
-      <NavBar />
+        {(this.state.user !== '') ? <UserBar /> :<NavBar />}
       <Switch>
       <Route exact path='/' component={this.handleHome}/>
       <Route exact path='/stocks' component={StocksContainer} />
