@@ -18,6 +18,10 @@ export default class LoginForm extends Component {
         this.props.handleSubmit(this.state)
     }
 
+    componentDidMount() {
+        console.log('hi from login')
+      }
+
 
     render() {
         return(
