@@ -24,10 +24,10 @@ export default class UserShow extends Component {
         })
     }
 
-    handleSubmit=(e) => {
-        e.preventDefault()
-        this.props.handleSubmit(this.state)
-    }
+    // handleSubmit=(e) => {
+    //     e.preventDefault()
+    //     this.props.handleSubmit(this.state)
+    // }
 
 
     handleSubmit = (e) => {
@@ -39,8 +39,6 @@ export default class UserShow extends Component {
           },
           body: JSON.stringify({
             user: {
-                username: this.state.username,
-                password: this.state.password,
                 name: this.state.name,
                 bio: this.state.bio,
                 image: this.state.image
@@ -81,9 +79,9 @@ export default class UserShow extends Component {
         return(
             <div>
                 <h1>Hi {username}</h1>
-                <img scr={image} />
-                <p>aka {name}</p>
-                <p> bio: {bio}</p>
+                <img src={this.state.image} alt='userimg'/>
+                <p>aka {this.state.name}</p>
+                <p> bio: {this.state.bio}</p>
                 <button onClick={this.props.handleLogout}>Logout</button>
 
                 {this.state.edit ?
@@ -92,8 +90,8 @@ export default class UserShow extends Component {
                 {/* <label>Username
                 <input name="username" value={this.state.username} placeholder={username} onChange={this.handleChange}/>
                 </label>
-                <br/>
-                <label> New Password
+                <br/> */}
+                {/* <label> New Password
                 <input name="password" value={this.state.password} onChange={this.handleChange}/>
                 </label>
                 <br/> */}
@@ -117,7 +115,10 @@ export default class UserShow extends Component {
                 <button onClick={this.handleClick}>Edit account</button>}
             </div>
         )} else {
-            return <div>user not found</div>
+            return (<div>
+                <h1>user not found</h1>
+
+            </div>)
         }
     }
 }

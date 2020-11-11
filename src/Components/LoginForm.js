@@ -36,6 +36,7 @@ export default class LoginForm extends Component {
                     </label>
                     <input type="submit" value="submit" />
                 </form>
+                {this.props.error ? <p style={{ color: 'red' }}>Invalid username or password</p> : null}
             </div>
         )
     }

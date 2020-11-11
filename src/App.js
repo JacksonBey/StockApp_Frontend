@@ -26,12 +26,13 @@ class App extends Component{
 
   state = {
     user: "",
-    token:""
+    token:"",
+    error: false
   }
 
   //render component
   handleHome = () => <HomePage user={this.state.user} />
-  renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} />
+  renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} error={this.state.error}/>
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
   handleWatchList = () => <Watchlist user={this.state.user} />
   renderAccount = () => <UserShow user={this.state.user} handleLogout={this.handleLogout}/>
@@ -52,12 +53,15 @@ class App extends Component{
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
-      this.setState({user: data.user, token: data.token}, () => {
-        console.log(this.state)
-        console.log(this.props.history)
+      console.log(data.message)
+      if(data.message === 'Invalid username or password') {
+        this.setState({error: true},() => {
+          this.props.history.push('/login')
+        })
+      } else {
+      this.setState({user: data.user, token: data.token, error: false}, () => {
         this.props.history.push('/')
-      })
+      })}
     })
   }
 
