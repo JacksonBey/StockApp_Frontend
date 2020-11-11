@@ -35,7 +35,7 @@ class App extends Component{
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} error={this.state.error}/>
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
   handleWatchList = () => <Watchlist user={this.state.user} />
-  renderAccount = () => <UserShow user={this.state.user} handleLogout={this.handleLogout}/>
+  renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
 
   //auth
   handleAuthFetch = (info, request) => {

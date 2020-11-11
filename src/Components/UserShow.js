@@ -11,11 +11,11 @@ export default class UserShow extends Component {
 
     state={
         edit:false,
-        username: "",
-        password: "",
-        name: "",
-        bio: "",
-        image: ""
+        // username: "",
+        // password: "",
+        name: this.props.user.data.attributes.name,
+        bio: this.props.user.data.attributes.bio,
+        image: this.props.user.data.attributes.image
     }
 
     handleChange= (e) => {
@@ -35,7 +35,8 @@ export default class UserShow extends Component {
         fetch(`http://localhost:3001/api/v1/users/${this.props.user.data.id}`, {
           method: 'PATCH',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.props.token}`
           },
           body: JSON.stringify({
             user: {
@@ -61,18 +62,6 @@ export default class UserShow extends Component {
         this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
       }
     
-    
-
-
-
-
-
-
-
-
-
-
-
     render() {
         if (this.props.user.data !== undefined) {
         let {username, bio, image, name} = this.props.user.data.attributes
