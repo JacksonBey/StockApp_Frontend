@@ -66,9 +66,9 @@ export default class UserShow extends Component {
         return(
             <div className='ui container'>
                 <h1>Hi {username}</h1>
-                <img src={this.state.image} alt='userimg'/>
-                <p>aka {this.state.name}</p>
-                <p> bio: {this.state.bio}</p>
+                <img src={image} alt='userimg'/>
+                <p>aka {name}</p>
+                <p> bio: {bio}</p>
                 <button onClick={this.props.handleLogout}>Logout</button>
                 {
                     this.state.edit ? 
