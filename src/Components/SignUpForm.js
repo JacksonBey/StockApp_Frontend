@@ -53,38 +53,40 @@ export default class SignUpForm extends Component {
     // :name, :username, :password, :password_confirmation, :bio, :image)
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return(
-            <div>
-                <br/>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username
-                    <input name="username" value={this.state.username} onChange={this.handleChange}/>
-                    </label>
-                    <br/>
-                    <label>Password
-                    <input name="password" value={this.state.password} onChange={this.handleChange}/>
-                    </label>
-                    <br/>
-                    {/* <label>Confirm Password
-                    <input name="cPassword" value={this.state.cPassword} onChange={this.handleChange}/>
-                    </label>
-                    <br/>
-                    <label>bio
-                    <input name="bio" value={this.state.bio} onChange={this.handleChange}/>
-                    </label>
-                    <br/>
-                    <label>name
-                    <input name="name" value={this.state.name} onChange={this.handleChange}/>
-                    </label>
-                    <br/>
-                    <label>Profile pic
-                    <input name="image" value={this.state.image} onChange={this.handleChange}/>
-                    </label>
-                    <br/> */}
-                    <input type="submit" value="submit" />
+            <div className='ui container'>
+                <form className='ui big form' onSubmit={this.handleSubmit}>
+                    <div className='two fields'>
+                        <div className='field'>
+                            <label>Username</label>
+                            <input type='text' name="username" value={this.state.username} onChange={this.handleChange}/>
+                        </div>
+                        <div className='field'>
+                            <label>Password</label>
+                            <input type='password' name="password" value={this.state.password} onChange={this.handleChange}/>
+                        </div>
+                    </div>
+                    <input className="ui button" type="submit" value="Sign Up" />
                 </form>
             </div>
         )
     }
 }
+
+// {/* <label>Confirm Password
+//                     <input name="cPassword" value={this.state.cPassword} onChange={this.handleChange}/>
+//                     </label>
+//                     <br/>
+//                     <label>bio
+//                     <input name="bio" value={this.state.bio} onChange={this.handleChange}/>
+//                     </label>
+//                     <br/>
+//                     <label>name
+//                     <input name="name" value={this.state.name} onChange={this.handleChange}/>
+//                     </label>
+//                     <br/>
+//                     <label>Profile pic
+//                     <input name="image" value={this.state.image} onChange={this.handleChange}/>
+//                     </label>
+//                     <br/> */}

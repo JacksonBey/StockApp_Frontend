@@ -1,39 +1,15 @@
 import React, {Component} from 'react';
 
-const usersurl = 'http://localhost:3001//watch_lists'
-// const watchlisturl = 'http://localhost:5000/watchlist'
-
 export default class CreateWLForms extends Component {
 
     state = {
-        users: [],
-        selecteduser: '',
         title: '',
         showMenu: false
-    }
-
-
-    componentDidMount() {
-        fetch(usersurl)
-        .then(res => res.json())
-        .then(users => {
-            console.log(users)
-            this.setState({
-                users: users.data
-            })
-        })
-        console.log(this.state.users)
     }
 
     handleMenu = () => {
         this.setState({
             showMenu: !this.state.showMenu
-        })
-    }
-
-    handleSelect = (user) => {
-        this.setState({
-            selecteduser: user
         })
     }
 
@@ -45,26 +21,24 @@ export default class CreateWLForms extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log('user: ', this.state.selecteduser)
         console.log('title: ', this.state.title)
-        //submit fetch
-
-        // fetch(watchlisturl, {
-        //     method: 'POST',
-        //     headers: {'Accept': 'application/json',
-        //     'Content-Type': 'application/json'},
-        //     body: JSON.stringify({
-        //         user: this.state.selecteduser,
-        //         title: this.state.title
-        //     })
-
-        // })
-        // .then(res => res.json())
-        // .then(watchlist => {
-        //     console.log(watchlist)
-        // })
-
-        //fetch not working yet
+        fetch('http://localhost:3001/watch_lists', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorizaton': `Bearer ${this.props.token}`
+            },
+            body: JSON.stringify({
+                watch_list: {
+                    title: this.state.title,
+                    user_id: this.props.user.data.id
+                }
+            })
+        })
+        .then(resp => resp.json())
+        .then(console.log)
+        
     }
 
     render() {
@@ -86,7 +60,7 @@ export default class CreateWLForms extends Component {
     }
 }
 
-{/* <button>{user.attributes.name} dfsa</button> */}
+// {/* <button>{user.attributes.name} dfsa</button> */}
 
 // <h3>Select User:</h3>
 // <div>
