@@ -8,7 +8,6 @@ export default class UserShow extends Component {
         })
     }
 
-
     state={
         edit:false,
         // username: "",
