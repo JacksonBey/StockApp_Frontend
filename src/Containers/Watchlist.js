@@ -29,8 +29,9 @@ export default class Watchlist extends Component {
                 <div>
                     {this.showUsername()}
                 </div>
+                <br/>
                 <button>
-                <Link to={'/CreateWLForm'}>createWL</Link>
+                <Link to={'/CreateWLForm'}>create new Watchlist</Link>
                 </button>
             </div>
         )
