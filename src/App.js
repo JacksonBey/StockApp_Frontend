@@ -29,6 +29,7 @@ class App extends Component{
     token:"",
     watchlists: [],
     stocks: [],
+    industries: [],
     loggedIn: false,
     error: false
   }
@@ -40,7 +41,8 @@ class App extends Component{
   handleWatchList = () => <Watchlist loggedIn={this.state.loggedIn} watchlists={this.state.watchlists} token={this.state.token}/>
   renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
   handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user} handleSubmit={this.handleWatchListCreate}/>
-  handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}/>
+  handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}
+   industries={this.state.industries.filter(this.onlyUnique)}/>
 
   componentDidMount() {
     fetch('http://localhost:3001/stocks')
@@ -48,11 +50,26 @@ class App extends Component{
       .then(stocks => {
           this.setState({
               stocks: stocks.data
-          })
+          }) 
+          this.getIndustries()
       })
 
 
   }
+
+  //getting unique industrie array:
+onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  getIndustries() {
+    this.state.stocks.map(stock => {
+      this.setState({
+        industries: [...this.state.industries, stock.attributes.industry]
+      })
+    })
+  }
+
 
   //auth
   handleAuthFetch = (info, request) => {

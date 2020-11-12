@@ -6,8 +6,9 @@ export default class StocksContainer extends Component {
     state = {
         stock_id: '',
         wl_id: '',
-        fiters: [],
-        sort: ''
+        filter: 'all',
+        sort: '',
+        stocks: this.props.stocks
     }
 
     getStockId = (stock) => {
@@ -35,7 +36,7 @@ export default class StocksContainer extends Component {
     }
 
     // sort functions
-    handleClick = (e) => {
+    handleSClick = (e) => {
         this.setState({
             sort: e.target.value
         })
@@ -60,26 +61,55 @@ export default class StocksContainer extends Component {
             return stocks
         }
     } 
-
-
-
     //end of sort
 
+    // filter functions
+
+
+    handleFClick = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            filter: e.target.value
+        })
+    }
+
+    filterStocks = (stocks) => {
+        if(this.state.filter === 'all') {
+            return stocks
+        } else {
+            return stocks.filter(stock => stock.attributes.industry === this.state.filter)
+        }
+    }
+
+    //end of filter
 
 
 
     render() {
+        let stocks = this.filterStocks(this.props.stocks)
         return(
             <div>
                 {/* sort */}
                 <div  className="ui buttons">
-                    <button onClick={this.handleClick} value= 'value' className="ui button">By Value</button>
-                    <button onClick={this.handleClick} value= 'alphabetical' className="ui button">Alphabetical</button>
+                    <button onClick={this.handleSClick} value= 'value' className="ui button">By Value</button>
+                    <button onClick={this.handleSClick} value= 'alphabetical' className="ui button">Alphabetical</button>
                 </div>
                 {/* end of sort */}
+                <select name="filter" multiple="" className="ui fluid dropdown" onChange={this.handleFClick} >
+                        <option value='all' onClick={this.handleFClick} >All</option>
+                    {this.props.industries.map((industry, idx) => {
+                        return <option key={idx} value={industry}>{industry}</option>
+                    })}
+    
+                </select>
+                
+                {/* filter */}
+
+
+                {/* end of filter */}
                 <h1>All Stocks</h1>
                 <div className='ui cards'>
-                    {this.sortStocks(this.props.stocks).map((stock, idx) => <Stock key={idx} stock={stock} handleSubmit={this.getStockId}/>)}
+                    {this.sortStocks(stocks).map((stock, idx) => <Stock key={idx} stock={stock} handleSubmit={this.getStockId}/>)}
                 </div>
             </div>
         )
