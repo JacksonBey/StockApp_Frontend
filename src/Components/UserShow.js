@@ -8,7 +8,6 @@ export default class UserShow extends Component {
         })
     }
 
-
     state={
         edit:false,
         // username: "",
@@ -57,20 +56,15 @@ export default class UserShow extends Component {
     
     
     
-      handleSignUp = (info) => {
-        console.log('sign up')
-        this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
-      }
-    
     render() {
         if (this.props.user.data !== undefined) {
         let {username, bio, image, name} = this.props.user.data.attributes
         return(
             <div>
                 <h1>Hi {username}</h1>
-                <img src={image} alt='userimg'/>
-                <p>aka {name}</p>
-                <p> bio: {bio}</p>
+                <img src={this.state.image} alt='userimg'/>
+                <p>aka {this.state.name}</p>
+                <p> bio: {this.state.bio}</p>
                 <button onClick={this.props.handleLogout}>Logout</button>
 
                 {this.state.edit ?
