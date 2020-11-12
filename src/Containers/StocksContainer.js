@@ -1,36 +1,53 @@
 import React, {Component} from 'react';
 import Stock from '../Components/Stock'
 
-const url = 'http://localhost:3001/stocks'
-
 export default class StocksContainer extends Component {
 
-
     state = {
-        stocks: []
+        stock_id: '',
+        wl_id: ''
     }
 
-    componentDidMount() {
-        this.getStocks()
+    getStockId = (stock) => {
+        if(!this.props.loggedIn) {
+            alert('please log in to interact with stocks')
+        } else {
+            console.log(stock.id)
+            // fetch('http://localhost:3001/watch_list_stocks', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Accept': 'application/json',
+            //         'Authorization': `Bearer ${this.props.token}`
+            //     },
+            //     body: JSON.stringify({
+            //         watch_list_stock: {
+            //             stock_id: stock.id,
+            //             watch_list_id: 
+            //         }
+            //     })
+            // })
+            // .then(resp => resp.json())
+            // .then(console.log)
+        }
     }
 
-    getStocks(){
-        fetch(url)
-        .then(res => res.json())
-        .then(stocks => {
-            this.setState({
-                stocks: stocks.data
-            })
-        })
-    }
+    getWlId = () => {
+        return (
+            <div>
 
+            </div>
+        )
+    }
 
     render() {
-        console.log(this.state.stocks)
         return(
             <div>
-            {this.state.stocks.map((stock, idx) => <Stock key={idx} stock={stock}/>)}
+                <h1>All Stocks</h1>
+                <div className='ui cards'>
+                    {this.props.stocks.map((stock, idx) => <Stock key={idx} stock={stock} handleSubmit={this.getStockId}/>)}
+                </div>
             </div>
-         )
-        }
+        )
+    }
 }

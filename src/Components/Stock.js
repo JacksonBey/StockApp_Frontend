@@ -1,14 +1,23 @@
 import React from 'react';
 
 const Stocks = (props) => {
-        console.log(props)
+        // console.log(props)
         return(
-            <div>
-                <br/>
-                <h3>id: {props.stock.id}</h3>
-                <h3>type: {props.stock.type}</h3>
-                <p>Value: {props.stock.attributes.value}</p>
-                <br/>
+            <div className='ui card'>
+                <div className='content'>
+                    <div className='header'>{props.stock.attributes.company}</div>
+                </div>
+                <div className='content'>
+                    <h4 className='ui sub header'>Value</h4>
+                    <p>{props.stock.attributes.value}</p>
+                </div>
+                <div className='content'>
+                    <h4 className='ui sub header'>Industry</h4>
+                    <p>{props.stock.attributes.industry}</p>
+                </div>
+                <div className="ui icon button" onClick={() => props.handleSubmit(props.stock)}>
+                    <i className="add icon"></i>
+                </div>
             </div>
         )
     }

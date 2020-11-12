@@ -27,6 +27,9 @@ class App extends Component{
   state = {
     user: "",
     token:"",
+    watchlists: [],
+    stocks: [],
+    loggedIn: false,
     error: false
   }
 
@@ -34,8 +37,20 @@ class App extends Component{
   handleHome = () => <HomePage user={this.state.user} />
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} error={this.state.error}/>
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
-  handleWatchList = () => <Watchlist user={this.state.user} />
+  handleWatchList = () => <Watchlist loggedIn={this.state.loggedIn} watchlists={this.state.watchlists}/>
   renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
+  handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user}/>
+  handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}/>
+
+  componentDidMount() {
+    fetch('http://localhost:3001/stocks')
+      .then(res => res.json())
+      .then(stocks => {
+          this.setState({
+              stocks: stocks.data
+          })
+      })
+  }
 
   //auth
   handleAuthFetch = (info, request) => {
@@ -53,22 +68,36 @@ class App extends Component{
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data.message)
       if(data.message === 'Invalid username or password') {
         this.setState({error: true},() => {
           this.props.history.push('/login')
         })
       } else {
-      this.setState({user: data.user, token: data.token, error: false}, () => {
-        this.props.history.push('/')
+      this.setState({user: data.user, token: data.token, error: false, loggedIn: true}, () => {
+        this.handleWatchlistFetch()
+        this.props.history.push('/') 
       })}
     })
   }
 
-
+  handleWatchlistFetch = () => {
+    fetch('http://localhost:3001/watch_lists', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.state.token}`
+      }
+    })
+    .then(resp => resp.json())
+    .then(watchlists => {
+      this.setState({
+        watchlists
+      })
+    })
+  }
 
   handleLogin = (info) => {
-    console.log(info)
     this.handleAuthFetch(info,'http://localhost:3001/api/v1/login')
 
   }
@@ -88,7 +117,9 @@ class App extends Component{
         user: "", token: ""
       })
       // console.log(this.state)
-}
+  }
+
+  
 
 
   render() {
@@ -98,12 +129,12 @@ class App extends Component{
         {(this.state.user !== '') ? <UserBar /> :<NavBar />}
       <Switch>
       <Route exact path='/' component={this.handleHome}/>
-      <Route exact path='/stocks' component={StocksContainer} />
+      <Route exact path='/stocks' component={this.handleStockContainer} />
       <Route exact path='/watchlist' component={this.handleWatchList} />
       <Route exact path='/login' component={this.renderLogin} />
       <Route exact path='/signup' component={this.renderSignUp} />
       <Route exact path='/about' component={AboutPage} />
-      <Route exact path='/CreateWLForm' component={CreateWLForm} />
+      <Route exact path='/CreateWLForm' component={this.handleCreateWLForm} />
       <Route exact path='/usershow' component={this.renderAccount} />
       </Switch>
       </div>
