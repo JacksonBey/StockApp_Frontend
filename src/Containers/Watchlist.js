@@ -7,6 +7,20 @@ import WatchListComponent from '../Components/WatchListComponent'
 
 export default class Watchlist extends Component {
 
+    handleClick = (watch_list_stock) => {
+        console.log(watch_list_stock[0].id)
+        fetch(`http://localhost:3001/watch_list_stocks/${watch_list_stock[0].id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            }
+        })
+        .then(resp => resp.json())
+        .then(console.log)
+    }
+
 
     showUsername = () => {
         if (!this.props.loggedIn) {
@@ -15,7 +29,7 @@ export default class Watchlist extends Component {
                 <h3>Sign In To View / Create A Watchlist</h3>
                 </div>
         } else {
-            return this.props.watchlists.data.map(watchlist => <WatchListComponent key={watchlist.id} watchlist={watchlist.attributes} />)
+            return this.props.watchlists.data.map(watchlist => <WatchListComponent key={watchlist.id} watchlist={watchlist.attributes} handleClick={this.handleClick} />)
         }
     }
 

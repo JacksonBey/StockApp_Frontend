@@ -1,8 +1,8 @@
 import React from 'react'
 
-const WatchListStock = ({stock}) => {
+const WatchListStock = ({stock, handleClick, watchliststocks}) => {
     return (
-        <div className=' ui card'>
+        <div className='ui card'>
             <div className='content'>
                 <div className='header'>{stock.company}</div>
             </div>
@@ -14,8 +14,12 @@ const WatchListStock = ({stock}) => {
                 <h4 className='ui sub header'>Industry</h4>
                 <p>{stock.industry}</p>
             </div>
-            <div className="ui icon button">
-                <i className="add icon"></i>
+            <div className="ui icon button" onClick={() => {
+                // console.log(watchliststocks)
+                let deleteId = watchliststocks.filter( wls => wls.stock_id === stock.id)
+                handleClick(deleteId)
+            }}>
+                <i className="minus icon"></i>
             </div>
         </div>
         
