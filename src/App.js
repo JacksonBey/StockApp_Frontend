@@ -37,7 +37,7 @@ class App extends Component{
   handleHome = () => <HomePage user={this.state.user} />
   renderLogin = () => <LoginForm name="Login Form" handleSubmit={this.handleLogin} error={this.state.error}/>
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
-  handleWatchList = () => <Watchlist loggedIn={this.state.loggedIn} watchlists={this.state.watchlists}/>
+  handleWatchList = () => <Watchlist loggedIn={this.state.loggedIn} watchlists={this.state.watchlists} token={this.state.token}/>
   renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
   handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user} handleSubmit={this.handleWatchListCreate}/>
   handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}/>
