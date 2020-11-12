@@ -21,24 +21,7 @@ export default class CreateWLForms extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log('title: ', this.state.title)
-        fetch('http://localhost:3001/watch_lists', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json',
-                'Authorizaton': `Bearer ${this.props.token}`
-            },
-            body: JSON.stringify({
-                watch_list: {
-                    title: this.state.title,
-                    user_id: this.props.user.data.id
-                }
-            })
-        })
-        .then(resp => resp.json())
-        .then(console.log)
-        
+        this.props.handleSubmit(this.state.title)
     }
 
     render() {

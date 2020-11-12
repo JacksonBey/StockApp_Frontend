@@ -39,7 +39,7 @@ class App extends Component{
   renderSignUp = () => <SignUpForm name="SignUp Form" handleSubmit={this.handleSignUp} />
   handleWatchList = () => <Watchlist loggedIn={this.state.loggedIn} watchlists={this.state.watchlists}/>
   renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
-  handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user}/>
+  handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user} handleSubmit={this.handleWatchListCreate}/>
   handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}/>
 
   componentDidMount() {
@@ -50,6 +50,8 @@ class App extends Component{
               stocks: stocks.data
           })
       })
+
+
   }
 
   //auth
@@ -92,7 +94,7 @@ class App extends Component{
     .then(resp => resp.json())
     .then(watchlists => {
       this.setState({
-        watchlists
+        watchlists: watchlists.data
       })
     })
   }
@@ -118,6 +120,39 @@ class App extends Component{
       })
       // console.log(this.state)
   }
+
+  //watchlist functions
+
+  handleWatchListCreate = (title) => {
+    console.log('title: ', title)
+
+    fetch('http://localhost:3001/watch_lists', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            'Authorizaton': `Bearer ${this.props.token}`
+        },
+        body: JSON.stringify({
+            watch_list: {
+                title: title,
+                user_id: this.state.user.data.id
+            }
+        })
+    })
+    .then(resp => resp.json())
+    .then(watchlist => {
+      let newWL = [...this.state.watchlists, watchlist.data]
+      this.setState({
+        watchlists: newWL
+        // watchlists: this.state.watchlists.push(watchlist)
+       
+      }, () => { this.props.history.push('/watchlist')})
+    })
+    
+}
+
+  //end of watchlist functions
 
   
 
