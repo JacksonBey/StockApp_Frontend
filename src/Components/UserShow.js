@@ -54,10 +54,10 @@ export default class UserShow extends Component {
         })
       }
 
-      handleSignUp = (info) => {
-        console.log('sign up')
-        this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
-      }
+    //   handleSignUp = (info) => {
+    //     console.log('sign up')
+    //     this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
+    //   }
     
     render() {
         if (this.props.user.data !== undefined) {

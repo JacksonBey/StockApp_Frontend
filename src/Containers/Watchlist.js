@@ -23,6 +23,7 @@ export default class Watchlist extends Component {
 
 
     showUsername = () => {
+
         if (!this.props.loggedIn) {
             return <div>
                 <h1>Looks Like You Aren't Signed In</h1>
