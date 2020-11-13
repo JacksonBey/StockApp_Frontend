@@ -98,6 +98,7 @@ export default class StocksContainer extends Component {
         return(
             <div>
                 {/* sort */}
+                <p>Sort:</p>
                 <div  className="ui buttons">
                     <button className="ui black basic button" onClick={this.handleSClick} value= 'value' >By Value</button>
                     <button className="ui black basic button" onClick={this.handleSClick} value= 'alphabetical' >Alphabetical</button>
@@ -106,6 +107,8 @@ export default class StocksContainer extends Component {
                 {/* end of sort */}
                 
                 {/* filter */}
+                <br/>
+                <p>Filter by Industry:</p>
                 <select name="filter" multiple="" className="ui fluid dropdown" onChange={this.handleFClick} >
                         <option value='all' onClick={this.handleFClick} >All</option>
                     {this.props.industries.map((industry, idx) => {
@@ -115,6 +118,7 @@ export default class StocksContainer extends Component {
                 </select>
                     <br />
                 {/* end of filter */}
+                <p>Select Watchlist:</p>
                 <select onChange={this.handleStockSelect}>
                     {this.props.watchlists.map(watchlist => <option value={watchlist.id}>{watchlist.attributes.title}</option>)}
                 </select>
