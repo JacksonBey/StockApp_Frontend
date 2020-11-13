@@ -14,25 +14,33 @@ export default class StocksContainer extends Component {
     getStockId = (stock) => {
         if(!this.props.loggedIn) {
             alert('please log in to interact with stocks')
+        } else if(this.state.wl_id === '') {
+            alert('please select a watchlist')
         } else {
-            console.log(stock.id)
-            // fetch('http://localhost:3001/watch_list_stocks', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Accept': 'application/json',
-            //         'Authorization': `Bearer ${this.props.token}`
-            //     },
-            //     body: JSON.stringify({
-            //         watch_list_stock: {
-            //             stock_id: stock.id,
-            //             watch_list_id: 
-            //         }
-            //     })
-            // })
-            // .then(resp => resp.json())
-            // .then(console.log)
+            fetch('http://localhost:3001/watch_list_stocks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${this.props.token}`
+                },
+                body: JSON.stringify({
+                    watch_list_stock: {
+                        stock_id: stock.id,
+                        watch_list_id: this.state.wl_id 
+                    }
+                })
+            })
+            .then(resp => resp.json())
+            .then(console.log)
+            // this.props.handleAddStock(stock)
         }
+    }
+
+    handleStockSelect = (e) => {
+        this.setState({
+            wl_id: e.target.value
+        })
     }
 
     // sort functions
@@ -107,6 +115,9 @@ export default class StocksContainer extends Component {
                 </select>
                     <br />
                 {/* end of filter */}
+                <select onChange={this.handleStockSelect}>
+                    {this.props.watchlists.map(watchlist => <option value={watchlist.id}>{watchlist.attributes.title}</option>)}
+                </select>
                 <h1>All Stocks</h1>
                 <div className='ui cards'>
                     {this.sortStocks(stocks).map((stock, idx) => <Stock key={idx} stock={stock} handleSubmit={this.getStockId}/>)}
