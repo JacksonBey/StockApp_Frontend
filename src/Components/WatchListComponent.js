@@ -16,7 +16,9 @@ class WatchListComponent extends Component{
         this.setState({
             stocks: nstocks
         })
-        this.props.handleClick(stock)
+        let wls = this.props.watchlist.watch_list_stocks.filter(s => s.stock_id === stock.id)
+        console.log(wls[0])
+        this.props.handleClick(wls[0])
     }
 
 

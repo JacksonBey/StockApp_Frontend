@@ -10,16 +10,15 @@ export default class Watchlist extends Component {
     handleClick = (watch_list_stock) => {
         console.log(watch_list_stock)
         fetch(`http://localhost:3001/watch_list_stocks/${watch_list_stock.id}`, {
-            method: 'DELETE'
-    })
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'Authorization': `Bearer ${this.props.token}`
-        //     }
-        // })
-        // .then(resp => resp.json())
-        // .then(console.log)
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            }
+        })
+        .then(resp => resp.json())
+        .then(console.log)
     }
 
 
