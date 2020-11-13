@@ -42,7 +42,7 @@ class App extends Component{
   renderAccount = () => <UserShow user={this.state.user} token={this.state.token} handleLogout={this.handleLogout}/>
   handleCreateWLForm = () => <CreateWLForm token={this.state.token} user={this.state.user} handleSubmit={this.handleWatchListCreate}/>
   handleStockContainer = () => <StocksContainer stocks={this.state.stocks} loggedIn={this.state.loggedIn} token={this.state.token} watchlists={this.state.watchlists}
-   industries={this.state.industries.filter(this.onlyUnique)}/>
+  industries={this.state.industries.filter(this.onlyUnique)} handleAddStock={this.handleAddStock}/>
 
   componentDidMount() {
     fetch('http://localhost:3001/stocks')
@@ -115,6 +115,10 @@ onlyUnique(value, index, self) {
       })
     })
   }
+
+  // handleAddStock = (stock, id) => {
+
+  // }
 
   handleLogin = (info) => {
     this.handleAuthFetch(info,'http://localhost:3001/api/v1/login')
