@@ -94,7 +94,10 @@ export default class StocksContainer extends Component {
                     <button onClick={this.handleSClick} value= 'value' className="ui button">By Value</button>
                     <button onClick={this.handleSClick} value= 'alphabetical' className="ui button">Alphabetical</button>
                 </div>
+                <br/>
                 {/* end of sort */}
+                
+                {/* filter */}
                 <select name="filter" multiple="" className="ui fluid dropdown" onChange={this.handleFClick} >
                         <option value='all' onClick={this.handleFClick} >All</option>
                     {this.props.industries.map((industry, idx) => {
@@ -102,10 +105,7 @@ export default class StocksContainer extends Component {
                     })}
     
                 </select>
-                
-                {/* filter */}
-
-
+                    <br />
                 {/* end of filter */}
                 <h1>All Stocks</h1>
                 <div className='ui cards'>

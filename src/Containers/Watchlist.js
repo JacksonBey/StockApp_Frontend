@@ -8,17 +8,18 @@ import WatchListComponent from '../Components/WatchListComponent'
 export default class Watchlist extends Component {
 
     handleClick = (watch_list_stock) => {
-        console.log(watch_list_stock[0].id)
-        fetch(`http://localhost:3001/watch_list_stocks/${watch_list_stock[0].id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.token}`
-            }
-        })
-        .then(resp => resp.json())
-        .then(console.log)
+        console.log(watch_list_stock)
+        fetch(`http://localhost:3001/watch_list_stocks/${watch_list_stock.id}`, {
+            method: 'DELETE'
+    })
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json',
+        //         'Authorization': `Bearer ${this.props.token}`
+        //     }
+        // })
+        // .then(resp => resp.json())
+        // .then(console.log)
     }
 
 
@@ -30,8 +31,15 @@ export default class Watchlist extends Component {
                 <h3>Sign In To View / Create A Watchlist</h3>
                 </div>
         } else {
-            return this.props.watchlists.data.map(watchlist => <WatchListComponent key={watchlist.id} watchlist={watchlist.attributes} handleClick={this.handleClick} />)
-        }
+            return (
+                <div>
+                {this.props.watchlists.map(watchlist => <WatchListComponent key={watchlist.id} watchlist={watchlist.attributes} handleClick={this.handleClick} />)}
+                <br />
+                <button>
+                <Link to={'/CreateWLForm'}>create new Watchlist</Link>
+                </button>
+                </div>
+            )}
     }
 
 
@@ -43,9 +51,9 @@ export default class Watchlist extends Component {
                     {this.showUsername()}
                 </div>
                 <br/>
-                <button>
+                {/* <button>
                 <Link to={'/CreateWLForm'}>create new Watchlist</Link>
-                </button>
+                </button> */}
             </div>
         )
     }

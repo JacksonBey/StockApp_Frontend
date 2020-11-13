@@ -15,8 +15,7 @@ const WatchListStock = ({stock, handleClick, watchliststocks}) => {
                 <p>{stock.industry}</p>
             </div>
             <div className="ui icon button" onClick={() => {
-                // console.log(watchliststocks)
-                let deleteId = watchliststocks.filter( wls => wls.stock_id === stock.id)
+                let deleteId = watchliststocks.filter( wls => wls.id === stock.id)
                 handleClick(deleteId)
             }}>
                 <i className="minus icon"></i>
