@@ -34,7 +34,7 @@ export default class Watchlist extends Component {
                 <div>
                 {this.props.watchlists.map(watchlist => <WatchListComponent key={watchlist.id} watchlist={watchlist.attributes} handleClick={this.handleClick} />)}
                 <br />
-                <button>
+                <button className="ui black basic button">
                 <Link to={'/CreateWLForm'}>create new Watchlist</Link>
                 </button>
                 </div>
