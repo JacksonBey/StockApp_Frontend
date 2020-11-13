@@ -37,7 +37,7 @@ export default class LoginForm extends Component {
                             <input type='password' name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <input className="ui button" type="submit" value="Log In" />
+                    <input className="ui black basic button" type="submit" value="Log In" />
                 </form>
                 {this.props.error ? <p style={{ color: 'red' }}>Invalid username or password</p> : null}
             </div>

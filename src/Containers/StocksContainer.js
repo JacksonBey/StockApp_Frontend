@@ -99,8 +99,8 @@ export default class StocksContainer extends Component {
             <div>
                 {/* sort */}
                 <div  className="ui buttons">
-                    <button onClick={this.handleSClick} value= 'value' className="ui button">By Value</button>
-                    <button onClick={this.handleSClick} value= 'alphabetical' className="ui button">Alphabetical</button>
+                    <button className="ui black basic button" onClick={this.handleSClick} value= 'value' >By Value</button>
+                    <button className="ui black basic button" onClick={this.handleSClick} value= 'alphabetical' >Alphabetical</button>
                 </div>
                 <br/>
                 {/* end of sort */}

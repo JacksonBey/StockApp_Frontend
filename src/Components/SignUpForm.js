@@ -66,7 +66,7 @@ export default class SignUpForm extends Component {
                             <input type='password' name="password" value={this.state.password} onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <input className="ui button" type="submit" value="Sign Up" />
+                    <input className="ui black basic button" type="submit" value="Sign Up" />
                 </form>
             </div>
         )
