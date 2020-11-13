@@ -53,7 +53,6 @@ export default class SignUpForm extends Component {
     // :name, :username, :password, :password_confirmation, :bio, :image)
 
     render() {
-        // console.log(this.props)
         return(
             <div className='ui container'>
                 <form className='ui big form' onSubmit={this.handleSubmit}>

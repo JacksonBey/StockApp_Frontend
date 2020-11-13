@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
 
     componentDidMount() {
         console.log('hi from login')
-      }
+    }
 
 
     render() {

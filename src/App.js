@@ -126,27 +126,22 @@ onlyUnique(value, index, self) {
   }
 
   handleSignUp = (info) => {
-    console.log('sign up')
     this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
   }
 
 
   handleLogout = () => {
-    console.log('logout')
       this.setState(() => {
         this.props.history.push('/')
       })
       this.setState({
         user: "", token: ""
       })
-      // console.log(this.state)
   }
 
   //watchlist functions
 
   handleWatchListCreate = (title) => {
-    console.log('title: ', title)
-
     fetch('http://localhost:3001/watch_lists', {
         method: 'POST',
         headers: {

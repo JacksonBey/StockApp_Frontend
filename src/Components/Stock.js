@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Stocks = (props) => {
-        // console.log(props)
         return(
             <div className='ui card'>
                 <div className='content'>
