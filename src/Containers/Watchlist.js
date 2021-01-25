@@ -8,7 +8,7 @@ import WatchListComponent from '../Components/WatchListComponent'
 export default class Watchlist extends Component {
 
     handleClick = (watch_list_stock) => {
-        fetch(`http://localhost:3001/watch_list_stocks/${watch_list_stock.id}`, {
+        fetch(`https://stockappapi1234.herokuapp.com/watch_list_stocks/${watch_list_stock.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -31,7 +31,7 @@ export default class UserShow extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3001/api/v1/users/${this.props.user.data.id}`, {
+        fetch(`https://stockappapi1234.herokuapp.com/api/v1/users/${this.props.user.data.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

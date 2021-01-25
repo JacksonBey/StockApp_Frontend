@@ -17,7 +17,7 @@ export default class StocksContainer extends Component {
         } else if(this.state.wl_id === '') {
             alert('please select a watchlist')
         } else {
-            fetch('http://localhost:3001/watch_list_stocks', {
+            fetch('https://stockappapi1234.herokuapp.com/watch_list_stocks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

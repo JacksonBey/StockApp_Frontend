@@ -45,7 +45,7 @@ class App extends Component{
   industries={this.state.industries.filter(this.onlyUnique)} handleAddStock={this.handleAddStock}/>
 
   componentDidMount() {
-    fetch('http://localhost:3001/stocks')
+    fetch('https://stockappapi1234.herokuapp.com/stocks')
       .then(res => res.json())
       .then(stocks => {
           this.setState({
@@ -100,7 +100,7 @@ onlyUnique(value, index, self) {
   }
 
   handleWatchlistFetch = () => {
-    fetch('http://localhost:3001/watch_lists', {
+    fetch('https://stockappapi1234.herokuapp.com/watch_lists', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -121,12 +121,12 @@ onlyUnique(value, index, self) {
   // }
 
   handleLogin = (info) => {
-    this.handleAuthFetch(info,'http://localhost:3001/api/v1/login')
+    this.handleAuthFetch(info,'https://stockappapi1234.herokuapp.com/api/v1/login')
 
   }
 
   handleSignUp = (info) => {
-    this.handleAuthFetch(info,'http://localhost:3001/api/v1/users')
+    this.handleAuthFetch(info,'https://stockappapi1234.herokuapp.com/api/v1/users')
   }
 
 
@@ -142,7 +142,7 @@ onlyUnique(value, index, self) {
   //watchlist functions
 
   handleWatchListCreate = (title) => {
-    fetch('http://localhost:3001/watch_lists', {
+    fetch('https://stockappapi1234.herokuapp.com/watch_lists', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
