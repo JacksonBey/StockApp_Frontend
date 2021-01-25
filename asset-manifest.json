@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/StockApp_Frontend/static/css/main.4bb0514f.chunk.css",
+    "main.js": "/StockApp_Frontend/static/js/main.3986aa3b.chunk.js",
+    "main.js.map": "/StockApp_Frontend/static/js/main.3986aa3b.chunk.js.map",
+    "runtime-main.js": "/StockApp_Frontend/static/js/runtime-main.77bbe20d.js",
+    "runtime-main.js.map": "/StockApp_Frontend/static/js/runtime-main.77bbe20d.js.map",
+    "static/css/2.d91d0a49.chunk.css": "/StockApp_Frontend/static/css/2.d91d0a49.chunk.css",
+    "static/js/2.fce35a5b.chunk.js": "/StockApp_Frontend/static/js/2.fce35a5b.chunk.js",
+    "static/js/2.fce35a5b.chunk.js.map": "/StockApp_Frontend/static/js/2.fce35a5b.chunk.js.map",
+    "index.html": "/StockApp_Frontend/index.html",
+    "static/css/2.d91d0a49.chunk.css.map": "/StockApp_Frontend/static/css/2.d91d0a49.chunk.css.map",
+    "static/css/main.4bb0514f.chunk.css.map": "/StockApp_Frontend/static/css/main.4bb0514f.chunk.css.map",
+    "static/js/2.fce35a5b.chunk.js.LICENSE.txt": "/StockApp_Frontend/static/js/2.fce35a5b.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/StockApp_Frontend/static/media/outline-icons.ddae9b1b.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77bbe20d.js",
+    "static/css/2.d91d0a49.chunk.css",
+    "static/js/2.fce35a5b.chunk.js",
+    "static/css/main.4bb0514f.chunk.css",
+    "static/js/main.3986aa3b.chunk.js"
+  ]
+}
