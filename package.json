@@ -1,6 +1,6 @@
 {
   "name": "stockapp-client",
-  "homepage": "http://JacksonBey.github.io/StockApp_Frontend",
+  "homepage": "http://JacksonBey.github.io/StockApp_Frontend/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
